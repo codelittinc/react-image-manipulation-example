@@ -35,7 +35,6 @@ function App() {
   const [imageUrl, setImageUrl] = useState('')
   const [items, setItems] = useState([]);
   const [activeItem, setActiveItem] = useState({})
-  const [r, setR] = useState()
   const ref = useRef(null)
 
   useEffect(() => {
@@ -65,7 +64,6 @@ function App() {
     newItems[itemIndex] = item;
     setItems(newItems)
     setActiveItem(null)
-    setR(Math.random())
   }
 
 

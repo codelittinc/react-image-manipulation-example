@@ -11,7 +11,7 @@ function Items({ itemsList, setActiveItem }) {
       className="item"
       onClick={() => setActiveItem(item)}
     >
-      {item.desc}
+      {item.id} - {item.desc}
     </button>
   ))
 
