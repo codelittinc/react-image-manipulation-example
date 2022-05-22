@@ -37,14 +37,19 @@
   }
 }
 
-#pointer {
-  color: red;
-  width: 10px;
-  height: 10px;
+.pointer {
+  width: 20px;
+  height: 20px;
   display: block;
   position: absolute;
   background-color: red;
   border-radius: 50px;
+  cursor: pointer;
+}
+
+.pointer span {
+  color: white;
+  font-size: 14px;
 }
 
 #image-container {
@@ -57,4 +62,17 @@
   display: flex;
   justify-content: center;
   margin-top: 87px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.items-list {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.item {
+  margin: 0 20px;
+  padding: 5px 16px;
 }

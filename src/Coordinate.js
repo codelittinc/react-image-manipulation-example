@@ -1,6 +1,16 @@
-function Coordinate({ x, y }) {
+function Coordinate({ item, onClick }) {
+    if (!item.x || !item.y) {
+        return <div />
+    }
+
+    console.log(item)
     return (
-        <div id="pointer" style={{ left: `${x}px`, top: `${y}px` }} />
+        <div className="pointer" style={{ left: `${item.x}px`, top: `${item.y}px` }} onClick={(e) => {
+            e.preventDefault()
+            onClick(item)
+        }}>
+            <span>{item.id}</span>
+        </div>
     );
 }
 

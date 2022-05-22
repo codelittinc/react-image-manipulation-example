@@ -1,6 +1,6 @@
 import Coordinate from './Coordinate';
 
-function App({ imageUrl, coordinates, setCoordinates }) {
+function Image({ imageUrl, setCoordinates, items, removeCoordinate }) {
     const onClickImage = (e) => {
         const baseX = e.target.getBoundingClientRect().x;
         const baseY = e.target.getBoundingClientRect().y;
@@ -18,12 +18,15 @@ function App({ imageUrl, coordinates, setCoordinates }) {
         setCoordinates([xIdeal, yIdeal])
     }
 
+    const coordinates = items.map((i) => (
+        <Coordinate key={`${i.id}-co`} item={i} onClick={removeCoordinate} />
+    ))
     return (
         <div id="image-container" onClick={onClickImage}>
-            <Coordinate x={coordinates[0]} y={coordinates[1]} />
+            {coordinates}
             <img src={imageUrl} />
         </div>
     );
 }
 
-export default App;
+export default Image;
