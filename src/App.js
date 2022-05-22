@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from './Image';
 import LoadImage from './LoadImage';
 import Items from './Items';
 import './App.css';
+
+import {
+  exportComponentAsPNG
+} from "react-component-export-image";
+
 const baseItems = [
   {
     desc: 'broken faucet',
@@ -31,6 +36,7 @@ function App() {
   const [items, setItems] = useState([]);
   const [activeItem, setActiveItem] = useState({})
   const [r, setR] = useState()
+  const ref = useRef(null)
 
   useEffect(() => {
     setItems(baseItems)
@@ -54,7 +60,7 @@ function App() {
     const itemIndex = items.findIndex((i) => i.id == c.id);
     const item = items.find((i) => i.id == c.id);
     item.x = undefined
-    item.y = undefined 
+    item.y = undefined
     const newItems = items
     newItems[itemIndex] = item;
     setItems(newItems)
@@ -64,7 +70,6 @@ function App() {
 
 
   const coordinateItems = items.filter((i) => i.x && i.y);
-  console.log(coordinateItems)
 
   return (
     <div className="App">
@@ -72,8 +77,11 @@ function App() {
         <div>
           <div id="page">
             <Items itemsList={items} setActiveItem={setActiveItem} />
-            <Image imageUrl={imageUrl} items={coordinateItems} setCoordinates={addCoordinateToItem} removeCoordinate={removeCoordinateFromItem}/>
+            <Image ref={ref} imageUrl={imageUrl} items={coordinateItems} setCoordinates={addCoordinateToItem} removeCoordinate={removeCoordinateFromItem} />
             <LoadImage setImageUrl={setImageUrl} displayLoad={!imageUrl} />
+            {imageUrl && <button className="export" onClick={() => { exportComponentAsPNG(ref)}}>
+              Export As PNG
+            </button>}
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@ function Coordinate({ item, onClick }) {
         return <div />
     }
 
-    console.log(item)
     return (
         <div className="pointer" style={{ left: `${item.x}px`, top: `${item.y}px` }} onClick={(e) => {
             e.preventDefault()

@@ -1,6 +1,7 @@
+import React from 'react';
 import Coordinate from './Coordinate';
 
-function Image({ imageUrl, setCoordinates, items, removeCoordinate }) {
+const Image = React.forwardRef(({ imageUrl, setCoordinates, items, removeCoordinate }, ref) => {
     const onClickImage = (e) => {
         const baseX = e.target.getBoundingClientRect().x;
         const baseY = e.target.getBoundingClientRect().y;
@@ -21,12 +22,15 @@ function Image({ imageUrl, setCoordinates, items, removeCoordinate }) {
     const coordinates = items.map((i) => (
         <Coordinate key={`${i.id}-co`} item={i} onClick={removeCoordinate} />
     ))
+
+    console.log('ref', ref)   
+
     return (
-        <div id="image-container" onClick={onClickImage}>
+        <div id="image-container" onClick={onClickImage} ref={ref}>
             {coordinates}
             <img src={imageUrl} />
         </div>
     );
-}
+})
 
 export default Image;
